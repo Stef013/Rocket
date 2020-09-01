@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+</head>
+
+<body
+    style="background-image: url('https://blenderartists.org/uploads/default/original/4X/7/e/2/7e2d7bea4ac21388c4a96e1371f375c4ce00094b.jpg'); background-size:cover; overflow:hidden;">
+    <div id="myAnimation" style="
+        background-image: url('https://i876555.hera.fhict.nl/rocket/raket.png');
+        left: 0%;
+        top: 50%;
+        position: absolute;
+        width: 100px;
+        height: 46px;
+      " onclick="start(this);"></div>
+
+    <script>
+        var Position_In_The_Chain = 46; // your ID. 
+        var Nextscreen = 47; // trigger next screen when your 'show is ended' , for instance an animation.
+
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBVzTcyAuEIi3XqHJfJ_Fu543lnqytDK9M",
+            authDomain: "welgeen003.firebaseapp.com",
+            databaseURL: "https://welgeen003.firebaseio.com",
+            projectId: "welgeen003",
+            storageBucket: "welgeen003.appspot.com",
+            messagingSenderId: "1056729225262"
+        };
+        firebase.initializeApp(config);
+
+        // Every time the firebase.database is Changed this will be excecuted!
+        firebase.database().ref('/chain/').on('value', function (snapshot) {
+            var node = (snapshot.val() && snapshot.val().node) || 'Anonymous';
+            console.log("Position_In_The_Chain:" + Position_In_The_Chain, "nextScreen:" + node.nextScreen);
+            if (node.nextScreen == Position_In_The_Chain) {
+                start(node);
+            }
+        });
+
+
+        var elem = document.getElementById("myAnimation");
+
+        function step() {
+            if (parseFloat(elem.style.left) < 100) {
+                elem.style.left = (parseFloat(elem.style.left) + 0.5) + '%';
+                window.requestAnimationFrame(step);
+            } else {
+                // Animation is ready!
+                console.log("Animation is ready!");
+                firebase.database().ref('/chain/').set({
+                    node: {
+                        "nextScreen": Nextscreen,
+                        "top": elem.style.top,
+                        "left": elem.style.left,
+                        "innerWidth": window.innerWidth,
+                        "innerheight": window.innerHeight
+                    }
+                });
+
+            }
+        }
+
+        function start(e) {
+            window.requestAnimationFrame(step);
+        }
+
+    </script>
+
+</body>
+
+</html>
