@@ -15,6 +15,7 @@
         position: absolute;
         width: 100px;
         height: 46px;
+        background-size: cover;
       " onclick="start(this);"></div>
 
     <script>
@@ -45,10 +46,21 @@
         var elem = document.getElementById("myAnimation");
 
         function step() {
-            if (parseFloat(elem.style.left) < 100) {
-                elem.style.left = (parseFloat(elem.style.left) + 0.5) + '%';
+            if (parseFloat(elem.style.left) < 40) {
+                elem.style.left = (parseFloat(elem.style.left) + 0.2) + '%';
+                elem.style.width = (parseFloat(elem.style.width) + 1) + 'px';
+                elem.style.height = (parseFloat(elem.style.height) + 0.5) + 'px';
+
                 window.requestAnimationFrame(step);
-            } else {
+            }
+            else if (parseFloat(elem.style.left) >= 40) {
+                elem.style.left = (parseFloat(elem.style.left) + 0.8) + '%';
+                elem.style.width = (parseFloat(elem.style.width) - 3) + 'px';
+                elem.style.height = (parseFloat(elem.style.height) - 1.5) + 'px';
+
+                window.requestAnimationFrame(step);
+            }
+            else {
                 // Animation is ready!
                 console.log("Animation is ready!");
                 firebase.database().ref('/chain/').set({
