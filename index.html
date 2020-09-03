@@ -53,7 +53,7 @@
                 window.requestAnimationFrame(step);
             }
             else if (parseFloat(elem.style.left) >= 40) {
-                elem.style.left = (parseFloat(elem.style.left) + 0.4) + '%';
+                elem.style.left = (parseFloat(elem.style.left) + 0.3) + '%';
 
                 window.requestAnimationFrame(step);
             }
@@ -149,10 +149,10 @@
 
             this.r = 15;
 
-            var one = 'rgba(10, 255, 255, 0.7)';
-            var two = 'rgba(255, 255, 255, 0.7)';
-            var three = 'rgba(10, 255, 255, 0.9)';
-            var four = 'rgba(255, 255, 255, 0.9)';
+            var one = 'rgba(69, 178, 255, 1)';
+            var two = 'rgba(255, 255, 255, 1)';
+            var three = 'rgba(10, 255, 255, 1)';
+            var four = 'rgba(27, 133, 209, 0.9)';
             var five = 'rgba(10, 255, 255, 0.5)';
             var six = 'rgba(255, 255, 255, 0.5)';
             var colors = [one, two, three, four, five, six];
@@ -178,7 +178,7 @@
 
                 ctx.beginPath();
                 ctx.fillStyle = p.color;
-                ctx.arc(p.x, p.y, p.r, Math.PI * 3, false);
+                ctx.arc(p.x, p.y, p.r, Math.PI * 2, false);
                 ctx.fill();
                 //the context of the particle(s)
 
