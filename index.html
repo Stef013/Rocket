@@ -46,15 +46,16 @@
 
         var elem = document.getElementById("myAnimation");
 
+       // && parseFloat(elem.style.left) < 100)
         function step() {
             if (parseFloat(elem.style.left) < 40) {
-                elem.style.left = (parseFloat(elem.style.left) + 0.2) + '%';
-
+                elem.style.left = (parseFloat(elem.style.left) + 0.3) + '%';
+                elem.style.top = (parseFloat(elem.style.top) + 0.3) + '%';
                 window.requestAnimationFrame(step);
             }
-            else if (parseFloat(elem.style.left) >= 40) {
+            else if (parseFloat(elem.style.left) >= 40 && parseFloat(elem.style.left) < 100)  {
                 elem.style.left = (parseFloat(elem.style.left) + 0.3) + '%';
-
+                elem.style.top = (parseFloat(elem.style.top) - 0.2) + '%';
                 window.requestAnimationFrame(step);
             }
             else {
@@ -130,7 +131,7 @@
         //finding the mouse position
 
         var particles = [];
-        for (var x = 0; x < c.width / 34; x++) {
+        for (var x = 0; x < c.width / 33; x++) {
             for (var y = 0; y < c.height / 34; y++) {
                 particles.push(new particle(x * 34, y * 34));
             }
@@ -192,8 +193,8 @@
                     var ax = dx,
                         ay = dy;
 
-                    p.x -= ax / 25;
-                    p.y -= ay / 25;
+                    p.x -= ax / 10;
+                    p.y -= ay / 10;
                 }
 
 
@@ -203,8 +204,8 @@
 
                 disto = Math.sqrt(dxo * dxo + dyo * dyo);
 
-                p.x -= dxo / 50;
-                p.y -= dyo / 50;
+                p.x -= dxo / 20;
+                p.y -= dyo / 20;
                 // making the particles move back into place
 
                 if (disto != 0) {
@@ -219,7 +220,7 @@
 
 
 
-        setInterval(mousemove, 100);
+        //setInterval(mousemove, 100);
     </script>
 
 </body>
