@@ -46,16 +46,16 @@
 
         var elem = document.getElementById("myAnimation");
 
-       // && parseFloat(elem.style.left) < 100)
+        // && parseFloat(elem.style.left) < 100)
         function step() {
             if (parseFloat(elem.style.left) < 40) {
-                elem.style.left = (parseFloat(elem.style.left) + 0.3) + '%';
-                elem.style.top = (parseFloat(elem.style.top) + 0.3) + '%';
+                elem.style.left = (parseFloat(elem.style.left) + 0.4) + '%';
+                elem.style.top = (parseFloat(elem.style.top) + 0.4) + '%';
                 window.requestAnimationFrame(step);
             }
-            else if (parseFloat(elem.style.left) >= 40 && parseFloat(elem.style.left) < 100)  {
-                elem.style.left = (parseFloat(elem.style.left) + 0.3) + '%';
-                elem.style.top = (parseFloat(elem.style.top) - 0.2) + '%';
+            else if (parseFloat(elem.style.left) >= 40) {
+                elem.style.left = (parseFloat(elem.style.left) + 0.7) + '%';
+                elem.style.top = (parseFloat(elem.style.top) - 0.5) + '%';
                 window.requestAnimationFrame(step);
             }
             else {
@@ -118,7 +118,7 @@
         };
         //mouse position
 
-        document.addEventListener('mousemove', function (e) {
+        /* document.addEventListener('mousemove', function (e) {
             mouse.x = e.clientX || e.pageX;
             mouse.y = e.clientY || e.pageY;
 
@@ -127,7 +127,7 @@
 
         document.addEventListener('mouseover', function () {
             istruehover = false;
-        }, false);
+        }, false); */
         //finding the mouse position
 
         var particles = [];
@@ -150,14 +150,12 @@
 
             this.r = 15;
 
-            var one = 'rgba(69, 178, 255, 1)';
-            var two = 'rgba(255, 255, 255, 1)';
-            var three = 'rgba(10, 255, 255, 1)';
-            var four = 'rgba(27, 133, 209, 0.9)';
-            var five = 'rgba(10, 255, 255, 0.5)';
-            var six = 'rgba(255, 255, 255, 0.5)';
-            var colors = [one, two, three, four, five, six];
-            this.color = colors[Math.round(Math.random() * 2)];
+            var one = 'rgba(252, 211, 3, 1)';
+            var three = 'rgba(252, 123, 3, 1)';
+            var four = 'rgba(252, 44, 3, 1)';
+            var five = 'rgba(255, 255, 255, 0.5)';
+            var colors = [one, three, four, five];
+            this.color = colors[Math.round(Math.random() * 4)];
             //only random colors of the variables
         }
 
@@ -189,12 +187,12 @@
 
                 dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (dist <= 100) {
+                if (dist <= 110) {
                     var ax = dx,
                         ay = dy;
 
-                    p.x -= ax / 10;
-                    p.y -= ay / 10;
+                    p.x -= ax / 2;
+                    p.y -= ay / 2;
                 }
 
 
@@ -204,12 +202,12 @@
 
                 disto = Math.sqrt(dxo * dxo + dyo * dyo);
 
-                p.x -= dxo / 20;
-                p.y -= dyo / 20;
+                p.x -= dxo / 15;
+                p.y -= dyo / 15;
                 // making the particles move back into place
 
                 if (disto != 0) {
-                    p.r = (disto / 4) + 15;
+                    p.r = (disto / 10) + 15;
                     // simple algebra XD
                 }
 
